@@ -44,6 +44,6 @@ Schedule the script to run without you:
 
 ```crontab -e```
 
-Then add this to the crontab to check your servers every ten minutes:
+Then add this to the crontab to check your servers every ten minutes (be sure to use bash as the executor):
 
 ```*/10 * * * * bash /home/user/serverStatus.sh```
