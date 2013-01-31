@@ -17,12 +17,12 @@ do
           #turn off the alert light
           ./blink1-tool --off
           #reset the USB due to some issues on my virtual machine
-          ./reset /dev/bus/usb/${USB_ID:4:3}/${UB_ID:15:3}
+          ./reset /dev/bus/usb/${USB_ID:4:3}/${USB_ID:15:3}
   else
 	  echo ${h} down
 	  #turn on the alert light to bright red
           ./blink1-tool -m 100 --rgb 255,0,0
           #reset the USB due to some issues on my virtual machine
-          ./reset /dev/bus/usb/${USB_ID:4:3}/${UB_ID:15:3}	  
+          ./reset /dev/bus/usb/${USB_ID:4:3}/${USB_ID:15:3}	  
   fi
 done

@@ -16,7 +16,7 @@ Install the necessary applications:
 
 Clone the blink(1) code repo:
 
-```git clone git://github.com/todbot/blink1.github```
+```git clone git://github.com/todbot/blink1.git```
 
 Compile the blink(1) binaries:
 
@@ -24,9 +24,27 @@ Compile the blink(1) binaries:
 
 Copy the binary to your script location:
 
-```cp ./blink1-tool ~ (or wherever your script is)```
+```cp ./blink1-tool ~/```
 
 Modify your udev rules so non-root users can access the device. You may need to replug the device after this step:
 
-```d blink1/linux/ && sudo cp ./51-blink1.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules```
+```cd blink1/linux/ && sudo cp ./51-blink1.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules```
 
+Compile the reset program:
+
+```gcc -o reset reset.c```
+
+## Prepare the Script ##
+
+Modify the serverStatus.sh script and place your servers in the HOSTS variable. They can be hostnames or IP addresses. ```man fping``` for more information. Make sure the script is executed in the same  
+directory as the compiled reset binary.
+
+## Schedule the Script ##
+
+Schedule the script to run without you:
+
+```crontab -e```
+
+Then add this to the crontab to check your servers every ten minutes:
+
+```*/10 * * * * bash /home/user/serverStatus.sh```
