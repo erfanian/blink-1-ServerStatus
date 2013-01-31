@@ -6,7 +6,7 @@ A simple script to monitor your servers using [blink(1)](http://www.kickstarter.
 ## Background
 
 I'm running my blink(1) on a virtual machine guest because the host is unable or unwilling to run/compile the blink(1) binaries. The blink(1) USB device is passed through to the guest, and the script 
-uses a small linux program to reset the dongle to deal with strange device access issues.
+uses a small linux program to reset the dongle to deal with strange device access issues. Your mileage may vary on some of the features.
 
 ## Prepare the Machine
 
