@@ -36,8 +36,7 @@ Compile the reset program:
 
 ## Prepare the Script ##
 
-Modify the serverStatus.sh script and place your servers in the HOSTS variable. They can be hostnames or IP addresses. ```man fping``` for more information. Make sure the script is executed in the same  
-directory as the compiled reset binary.
+Modify the serverStatus.sh script and place your servers in the HOSTS variable. They can be hostnames or IP addresses. ```man fping``` for more information. Make sure the script is executed in the same directory as the compiled reset binary.
 
 ## Schedule the Script ##
 
