@@ -8,6 +8,8 @@ A simple script to monitor your servers using [blink(1)](http://www.kickstarter.
 I'm running my blink(1) on a virtual machine guest because the host is unable or unwilling to run/compile the blink(1) binaries. The blink(1) USB device is passed through to the guest, and the script 
 uses a small linux program to reset the dongle to deal with strange device access issues. Your mileage may vary on some of the features.
 
+The script uses fping and curl to test a variety of server/port combinations.
+
 ## Prepare the Machine
 
 Install the necessary applications:
@@ -36,7 +38,8 @@ Compile the reset program:
 
 ## Prepare the Script ##
 
-Modify the serverStatus.sh script and place your servers in the HOSTS variable. They can be hostnames or IP addresses. ```man fping``` for more information. Make sure the script is executed in the same directory as the compiled reset binary.
+Modify the serverStatus.sh script and place your servers in the HOSTS or HOSTS2 variable. They can be hostnames or IP addresses. ```man fping``` for more information. Make sure the script is executed 
+in the same directory as the compiled reset binary.
 
 ## Schedule the Script ##
 
