@@ -12,21 +12,21 @@ uses a small linux program to reset the dongle to deal with strange device acces
 
 Install the necessary applications:
 
-'''sudo apt-get install make git libusb-1.0-0-dev pkg-config fping'''
+```sudo apt-get install make git libusb-1.0-0-dev pkg-config fping```
 
 Clone the blink(1) code repo:
 
-'''git clone git://github.com/todbot/blink1.github'''
+```git clone git://github.com/todbot/blink1.github```
 
 Compile the blink(1) binaries:
 
-'''cd blink1/commandline/ && make'''
+```cd blink1/commandline/ && make```
 
 Copy the binary to your script location:
 
-'''cp ./blink1-tool ~ (or wherever your script is)'''
+```cp ./blink1-tool ~ (or wherever your script is)```
 
 Modify your udev rules so non-root users can access the device. You may need to replug the device after this step:
 
-'''d blink1/linux/ && sudo cp ./51-blink1.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules'''
+```d blink1/linux/ && sudo cp ./51-blink1.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules```
 
