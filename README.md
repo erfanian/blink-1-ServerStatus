@@ -53,9 +53,11 @@ You will need a client_secrets.json file to interface with the webservice. Follo
 
 If you are running these scripts on a headless server or need a graphical interface to get your auth token, you should run the script first on a machine that you prefer and scp the client_secrets.json and analytics.dat files to the headless machine.
 
-## Prepare the Script ##
+## Prepare the Scripts ##
 
 Modify the serverStatus.sh script and place your servers in the HOSTS or HOSTS2 variable. They can be hostnames or IP addresses. ```man fping``` for more information. Make sure the script is executed in the same directory as the compiled reset binary.
+
+To adjust the popularity thresholds in the script, adjust the if conditionals in web_popularity.sh
 
 ## Schedule the Script ##
 
