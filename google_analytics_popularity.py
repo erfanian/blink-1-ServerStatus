@@ -8,7 +8,7 @@ import sys
 from time import strftime
 
 # import the Auth Helper class
-import hello_analytics_api_v3_auth
+import analytics_api_auth
 
 from apiclient.errors import HttpError
 from oauth2client.client import AccessTokenRefreshError
