@@ -1,23 +1,26 @@
 #!/bin/bash
 #A helper script to determine web popularity.
 
-#Make a function to call the python script to get data from Google Analytics
-get_popularity ()
-{
-  visits_today=$(/usr/bin/python2.7 ./google_analytics_popularity.py)
-  return $visits_today
-}
+#Source generic blink(1) functions
+. ./blinkFunctions.sh
 
-#Call the function
-get_popularity
+#Call the serverStatus.sh script. We only want to know how popular we are if our servers are up!
+serverCheck=$(bash ./serverStatus.sh | tail -n 1)
 
-#Set up the conditional statement to gauge your popularity
-if [ $visits_today -le 50 ]; then
-  echo "low popularity"
-elif [ $visits_today -le 100 ]; then
-  echo "mild popularity"
-elif [ $visits_today -ge 101 ]; then
-  echo "super popular"
-else
-  echo "I'm not sure what's going on."
+if [ "$serverCheck" = "hosts up" ]; then
+
+  #Call the function
+  get_popularity
+
+  #Set up the conditional statement to gauge your popularity and call the appropriate function
+  if [ $visits_today -le 50 ]; then
+    lowPopularity
+  elif [ $visits_today -le 100 ]; then
+    mediumPopularity
+  elif [ $visits_today -ge 101 ]; then
+    highPopularity
+  else
+    echo "I'm not sure what's going on."
+  fi
+  
 fi
