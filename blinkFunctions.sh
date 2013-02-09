@@ -20,8 +20,8 @@ function lightOff ()
 {
    if [ $RESULT -ne 1 ]; then
     #turn off the alert light
-    echo   ./blink1-tool --off
-    echo   reset
+    ./blink1-tool --off
+    reset
     echo "hosts up"
    fi
 }
