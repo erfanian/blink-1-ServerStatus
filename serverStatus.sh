@@ -3,42 +3,15 @@
 # Based on code from http://www.cyberciti.biz/tips/linux-unix-profiling-network-connectivity-with-fping.html,
 # and http://forums.x-plane.org/index.php?app=downloads&showfile=9485.
 
+#Source generic blink(1) functions
+. ./blinkFunctions.sh
+
 #Enter a list of the hostnames or IP Addresses you want to check using fping.
 HOSTS="hostname1 ipaddress2"
 #Enter a list of addresses you wish to check with curl.
 HOSTS2="ip1:port1 ip2:port2"
-#Get the physical address of the USB blink(1) dongle
-USB_ID=$(lsusb -d 27b8:01ed)
 #Set a global variable to track if one server is down
 RESULT=0
-
-#Set the flare:
-function lightOn ()
-{
-  echo $h down
-  #turn on the alert light to bright red
-  ./blink1-tool -m 100 --rgb 255,0,0
-  reset
-  #Break from the test loops because we know something is wrong.
-  RESULT=1
-}
-
-#Else Quiet
-function lightOff ()
-{
-  if [ $RESULT -ne 1 ]; then
-   echo "hosts up"
-   #turn off the alert light
-   ./blink1-tool --off
-   reset
-  fi
-}
-
-#Reset the USB due to some issues on my virtual machine
-function reset ()
-{
- ./reset /dev/bus/usb/${USB_ID:4:3}/${USB_ID:15:3}
-}
 
 #Test HOSTS with fping.
 for h in $HOSTS
