@@ -9,7 +9,7 @@ A simple script to monitor your servers using [blink(1)](http://www.kickstarter.
 
 ## Background
 
-I'm running my blink(1) on a virtual machine guest because the host is unable or unwilling to run/compile the blink(1) binaries. The blink(1) USB device is passed through to the guest, and the script uses a small linux program to reset the dongle to deal with strange device access issues. Your mileage may vary on some of the features.
+I'm running my blink(1) on a virtual machine guest because the host is unable or unwilling to run/compile the blink(1) binaries. The blink(1) USB device is passed through to the guest, and the script uses a small Linux program to reset the dongle to deal with strange device access issues. Your mileage may vary on some of the features.
 
 The serverStatus script uses fping and curl to test a variety of server/port combinations. The web_popularity script uses Python to interface with the Google Analytics API.
 
@@ -43,15 +43,15 @@ Modify your udev rules so non-root users can access the device. You may need to 
 
 ```cd blink1/linux/ && sudo cp ./51-blink1.rules /etc/udev/rules.d/ && sudo udevadm control --reload-rules```
 
-Compile the reset program:
+Compile the reset program and copy it to the directory where the script will be executed:
 
-```gcc -o reset reset.c```
+```gcc -o reset reset.c && cp ./reset ~/```
 
 ## Create the necessary API Auth Files ##
 
-You will need a client_secrets.json file to interface with the webservice. You can download the necessary file using Google's [quick start tutorial](https://developers.google.com/api-client-library/python/start/installation). Place this file in the same directory you run the script.
+You will need a client_secrets.json file to interface with the webservice. Follow the steps and download the necessary file using Google's [quick start tutorial](https://developers.google.com/api-client-library/python/start/installation). Place this file in the same directory you run the script.
 
-If you are running these scripts on a headless server or need a graphical interface to get your auth token, you should run the script first on a machine that you prefer and scp the client_secrets.json and analytics.dat file to the headless machine.
+If you are running these scripts on a headless server or need a graphical interface to get your auth token, you should run the script first on a machine that you prefer and scp the client_secrets.json and analytics.dat files to the headless machine.
 
 ## Prepare the Script ##
 
