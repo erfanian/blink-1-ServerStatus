@@ -34,6 +34,13 @@ function get_popularity ()
   return $visits_today
 }
 
+#Low popularity signal; the blink tool doesn't turn on the lights below this threshold.
+function lowPopularity ()
+{
+  ./blink1-tool --rgb 16,16,16
+  reset
+}
+
 #General popularity signal
 function setPopularity ()
 {

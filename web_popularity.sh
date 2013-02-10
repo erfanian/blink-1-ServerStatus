@@ -16,7 +16,10 @@ get_popularity
 RGB=$visits_today
 
 #Set up the conditional statement to gauge your popularity and call the appropriate function
-  if [ $visits_today -le 255 ]; then
+#lowPopularity ensures that if you have any traffic you can see the light.
+  if [ $visits_today -gt 0 ] && [ $visits_today -le 16 ]; then
+    lowPopularity
+  elif [ $visits_today -le 255 ]; then
     setPopularity $RGB
   elif [ $visits_today -ge 256 ]; then
     highPopularity
