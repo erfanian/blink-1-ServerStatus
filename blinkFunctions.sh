@@ -1,5 +1,5 @@
 #!/bin/bash
-# blinkFunctions.sh - Generic functions to control the blink
+# blinkFunctions.sh - Generic functions to control the blink(1)
 
 #Get the physical address of the USB blink(1) dongle
 USB_ID=$(lsusb -d 27b8:01ed)
@@ -29,22 +29,15 @@ function lightOff ()
 #Make a function to call the python script to get data from Google Analytics
 function get_popularity ()
 {
-  #Be sure to change the python path on your system  if you run into trouble
+  #Be sure to change the python path on your system if you run into trouble
   visits_today=$(/usr/bin/python2.7 ./google_analytics_popularity.py)
   return $visits_today
 }
 
-#Low popularity signal
-function lowPopularity ()
+#General popularity signal
+function setPopularity ()
 {
-  ./blink1-tool --rgb 85,85,85
-  reset
-}
-
-#Medium popularity signal
-function mediumPopularity ()
-{
-  ./blink1-tool --rgb 170,170,170
+  ./blink1-tool --rgb $1,$1,$1
   reset
 }
 
