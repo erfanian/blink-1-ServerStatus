@@ -18,7 +18,7 @@ RGB=$visits_today
 #Set up the conditional statement to gauge your popularity and call the appropriate function
   if [ $visits_today -le 255 ]; then
     setPopularity $RGB
-  elif [ $visits_today -ge 266 ]; then
+  elif [ $visits_today -ge 256 ]; then
     highPopularity
   else
     echo "I'm not sure what's going on."
