@@ -71,4 +71,4 @@ For just the serverStatus add this to the crontab to check your servers every te
 
 For the web_popularity + serverStatus add:
 
-```*/10 * * * * bash /home/user/serverStatus.sh```
+```*/10 * * * * bash /home/user/web_popularity.sh```
