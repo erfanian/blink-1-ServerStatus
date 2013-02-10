@@ -19,7 +19,7 @@ RGB=$visits_today
 #lowPopularity ensures that if you have any traffic you can see the light.
   if [ $visits_today -gt 0 ] && [ $visits_today -le 16 ]; then
     lowPopularity
-  elif [ $visits_today -le 255 ]; then
+  elif [ $visits_today -ge 17 ] && [ $visits_today -le 255 ]; then
     setPopularity $RGB
   elif [ $visits_today -ge 256 ]; then
     highPopularity
