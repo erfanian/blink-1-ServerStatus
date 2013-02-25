@@ -3,7 +3,7 @@ blink-1-ServerStatus
 
 A simple script to monitor your servers using [blink(1)](http://www.kickstarter.com/projects/thingm/blink1-the-usb-rgb-led).
 
-**serverStatus.sh** monitors if your servers are up.
+**serverStatus.sh** monitors if your servers are up. Also integrates with [Pushover](www.pushover.net).
 
 **web_popularity.sh** interfaces with the Google Analytics API to see how many visitors your website has today.
 

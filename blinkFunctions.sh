@@ -69,8 +69,7 @@ curl -s \
   -F "token=APP_TOKEN" \
   -F "user=USER_KEY" \
   -F "title=Server Status" \
-  -F "timestamp" \
   -F "sound=none" \
-  -F "Server $h is down." \
+  -F "$h is down." \
   https://api.pushover.net/1/messages.json
 }
