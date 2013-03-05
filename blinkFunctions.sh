@@ -4,6 +4,21 @@
 #Get the physical address of the USB blink(1) dongle
 USB_ID=$(lsusb -d 27b8:01ed)
 
+#If you run an openVPN server, see if anyone is connected. Substitude your own subnet:
+function vpn ()
+{
+  if cat openvpn-status.log | grep 10.8.0
+    then
+      #Make the light blue.
+      ./blink1-tool --blue
+      reset
+      #Flash the brake just in case
+      RESULT=1
+      #Stop the presses, VPN status supersedes server status
+      exit
+  fi
+}
+
 #Set the flare:
 function lightOn ()
 {
