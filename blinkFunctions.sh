@@ -4,7 +4,7 @@
 #Get the physical address of the USB blink(1) dongle
 USB_ID=$(lsusb -d 27b8:01ed)
 
-#If you run an openVPN server, see if anyone is connected. Substitude your own subnet:
+#If you run an openVPN server, see if anyone is connected. Substitute your own subnet:
 function vpn ()
 {
   if cat openvpn-status.log | grep 10.8.0
