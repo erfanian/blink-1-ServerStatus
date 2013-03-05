@@ -4,6 +4,9 @@
 #Source generic blink(1) functions
 . ./blinkFunctions.sh
 
+#See if anyone is connected to the VPN
+vpn
+
 #Call the serverStatus.sh script. We only want to know how popular we are if our servers are up!
 serverCheck=$(bash ./serverStatus.sh | tail -n 1)
 
