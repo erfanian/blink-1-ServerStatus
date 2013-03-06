@@ -16,7 +16,7 @@ function vpn ()
       RESULT=1
       #Make sure interested parties know via pushover
       pushmsg=$(cat openvpn-status.log | grep 10.8.0...)
-      pushover "${pushmsg:0:11} connected to vpn"
+      pushover "${pushmsg:0:11} connected to vpn" -1
       echo "${pushmsg:0:11} connected to vpn"
       #Stop the presses, VPN status supersedes server status
       exit
@@ -30,7 +30,7 @@ function lightOn ()
   #turn on the alert light to bright red
   ./blink1-tool -m 100 --rgb 255,0,0
   reset
-  pushover "$h down"
+  pushover "$h down" 0
   #Break from the test loops because we know something is wrong.
   RESULT=1
 }
@@ -89,6 +89,7 @@ curl -s \
   -F "user=USER_KEY" \
   -F "title=Server Status" \
   -F "sound=none" \
+  -F "priority=$2"\
   -F "message=$1" \
   https://api.pushover.net/1/messages.json
 }
