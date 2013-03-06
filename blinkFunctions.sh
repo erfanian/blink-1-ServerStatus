@@ -20,6 +20,8 @@ function vpn ()
       RESULT=1
       #Make sure interested parties know via pushover
       pushover_verify
+    else
+      echo "no VPN active"
   fi
 }
 
@@ -28,8 +30,9 @@ function pushover_verify ()
 {
 #Get the receipt number
 receipt=$(cat pushCheck | grep -o -w "..............................")
+receipt_response_url="https://api.pushover.net/1/receipts/$receipt.json?token=$pushover_token"
 
-  if curl https://api.pushover.net/1/receipts/$receipt.json?token=$pushover_token | grep "acknowledged.:1"
+  if curl $receipt_response_url | grep "acknowledged.:1"
     then
       #we've already sent the notification. If no receipt, then message could be expired. We'll send another just in case.
       echo "Alert has already been sent."
@@ -37,7 +40,7 @@ receipt=$(cat pushCheck | grep -o -w "..............................")
     else
       #send an alert
       pushmsg=$(cat openvpn-status.log | grep 10.8.0...)
-      pushover "${pushmsg:0:11} connected to vpn" -1
+      pushover "${pushmsg:0:11} connected to vpn" 2
       echo "${pushmsg:0:11} connected to vpn"
       #Stop the presses, VPN status supersedes server status
       exit
