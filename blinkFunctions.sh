@@ -4,6 +4,10 @@
 #Get the physical address of the USB blink(1) dongle
 USB_ID=$(lsusb -d 27b8:01ed)
 
+#Set pushover token:
+pushover_token="supplyTokenString"
+pushover_user="supplyUserString"
+
 #If you run an openVPN server, see if anyone is connected. Substitute your own subnet:
 function vpn ()
 {
@@ -85,11 +89,13 @@ function reset ()
 function pushover()
 {
 curl -s \
-  -F "token=APP_TOKEN" \
-  -F "user=USER_KEY" \
+  -F "token=$pushover_token" \
+  -F "user=$pushover_user" \
   -F "title=Server Status" \
   -F "sound=none" \
   -F "priority=$2"\
   -F "message=$1" \
+  -F "expire=43200" \
+  -F "retry=1200" \
   https://api.pushover.net/1/messages.json
 }
