@@ -19,11 +19,40 @@ function vpn ()
       #Flash the brake just in case
       RESULT=1
       #Make sure interested parties know via pushover
+      pushover_verify
+  fi
+}
+
+#Make sure we really want to send important pushover notifications:
+function pushover_verify ()
+{
+#Get the receipt number
+receipt=$(cat pushCheck | grep -o -w "..............................")
+
+  if curl https://api.pushover.net/1/receipts/$receipt.json?token=pushover_token | grep "acknowledged.:1"
+    then
+      #we've already sent the notification. If no receipt, then message could be expired. We'll send another just in case.
+      echo "Alert has already been sent."
+      exit
+    else
+      #send an alert
       pushmsg=$(cat openvpn-status.log | grep 10.8.0...)
       pushover "${pushmsg:0:11} connected to vpn" -1
       echo "${pushmsg:0:11} connected to vpn"
       #Stop the presses, VPN status supersedes server status
       exit
+  fi
+}
+
+#Cleanup files to make sure important messages get through:
+function pushover_cleanup ()
+{
+  #if the file exists delete it
+  if [ -f pushCheck ]
+    then
+      rm pushCheck
+    else
+      echo "file does not exist"
   fi
 }
 
@@ -97,5 +126,5 @@ curl -s \
   -F "message=$1" \
   -F "expire=43200" \
   -F "retry=1200" \
-  https://api.pushover.net/1/messages.json
+  https://api.pushover.net/1/messages.json > pushCheck
 }
