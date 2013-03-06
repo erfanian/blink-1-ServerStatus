@@ -16,8 +16,8 @@ function vpn ()
       RESULT=1
       #Make sure interested parties know via pushover
       pushmsg=$(cat openvpn-status.log | grep 10.8.0...)
-      pushover "${pushmsg:1:13} connected to vpn"
-      echo "${pushmsg:1:13} connected to vpn"
+      pushover "${pushmsg:0:11} connected to vpn"
+      echo "${pushmsg:0:11} connected to vpn"
       #Stop the presses, VPN status supersedes server status
       exit
   fi
