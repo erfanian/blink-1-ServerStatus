@@ -29,7 +29,7 @@ function pushover_verify ()
 #Get the receipt number
 receipt=$(cat pushCheck | grep -o -w "..............................")
 
-  if curl https://api.pushover.net/1/receipts/$receipt.json?token=pushover_token | grep "acknowledged.:1"
+  if curl https://api.pushover.net/1/receipts/$receipt.json?token=$pushover_token | grep "acknowledged.:1"
     then
       #we've already sent the notification. If no receipt, then message could be expired. We'll send another just in case.
       echo "Alert has already been sent."
